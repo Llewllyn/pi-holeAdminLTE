@@ -337,11 +337,6 @@ p.login-box-msg,
   height: 32px;
 }
 
-.login-box {
-  margin-bottom: 0;
-  background: #181818;
-}
-
 .has-error.login-box-msg::before,
 .has-error.login-box-msg::after {
   content: "ACCESS DENIED";
@@ -1095,6 +1090,11 @@ table.table-bordered.dataTable td {
   border-top: 4px solid #000;
   padding: 10px;
   background-color: transparent;
+}
+
+.login-box {
+  margin-bottom: 0;
+  background: #181818;
 }
 
 .page-header {
