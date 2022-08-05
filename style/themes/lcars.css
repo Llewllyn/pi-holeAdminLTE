@@ -337,6 +337,11 @@ p.login-box-msg,
   height: 32px;
 }
 
+.login-box {
+  margin-bottom: 0;
+  background: #181818;
+}
+
 .has-error.login-box-msg::before,
 .has-error.login-box-msg::after {
   content: "ACCESS DENIED";
@@ -377,10 +382,6 @@ p.login-box-msg,
 #loginform .has-error + .row .btn:active,
 #loginform .has-error + .row .btn:focus {
   background: #f00;
-}
-
-.login-help p {
-  font-size: 13px;
 }
 
 .input-group .input-group-addon {
