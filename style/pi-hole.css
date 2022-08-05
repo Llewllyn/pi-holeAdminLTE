@@ -508,8 +508,8 @@ td.details-control {
 
 .login-box {
   position: relative;
-  margin:0 auto;
-  padding:5px;
+  margin: 0 auto;
+  padding: 5px;
   width: 480px;
   max-width: 100%;
   flex: 0 1 auto;
@@ -554,7 +554,7 @@ td.details-control {
 
 .login-footer a {
   text-align: center;
-  min-width: 28%
+  min-width: 28%;
 }
 @media screen and (max-width: 420px) {
   .login-footer a {
@@ -564,7 +564,7 @@ td.details-control {
 }
 
 .login-donate {
-  padding:15px;
+  padding: 15px;
 }
 
 /*** Warning icon and count ***/
