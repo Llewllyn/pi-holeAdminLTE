@@ -1,11 +1,11 @@
 <?php
 /*
-*    Pi-hole: A black hole for Internet advertisements
-*    (c) 2017 Pi-hole, LLC (https://pi-hole.net)
-*    Network-wide ad blocking via your own hardware.
+*  Pi-hole: A black hole for Internet advertisements
+*  (c) 2017 Pi-hole, LLC (https://pi-hole.net)
+*  Network-wide ad blocking via your own hardware.
 *
-*    This file is copyright under the latest version of the EUPL.
-*    Please see LICENSE file for your rights under this license.
+*  This file is copyright under the latest version of the EUPL.
+*  Please see LICENSE file for your rights under this license.
 */
 
 require "scripts/pi-hole/php/password.php";
@@ -16,71 +16,8 @@ if ($_SESSION["auth"]) {
     exit;
 }
 
-$setupVars = parse_ini_file("/etc/pihole/setupVars.conf");
-
-require "scripts/pi-hole/php/theme.php";
-
-// Retrieve layout setting from setupVars
-if (isset($setupVars['WEBUIBOXEDLAYOUT']) && !($setupVars['WEBUIBOXEDLAYOUT'] === "boxed")) {
-    $boxedlayout = false;
-} else {
-    $boxedlayout = true;
-}
-
-// Override layout setting if layout is changed via Settings page
-if (isset($_POST["field"])) {
-    if ($_POST["field"] === "webUI" && isset($_POST["boxedlayout"])) {
-        $boxedlayout = true;
-    } elseif ($_POST["field"] === "webUI" && !isset($_POST["boxedlayout"])) {
-        $boxedlayout = false;
-    }
-}
-
-// Create cache busting version
-$cacheVer = filemtime(__FILE__);
+require "scripts/pi-hole/php/common_header.php";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pi-hole login</title>
-
-<?php if ($theme == "default-light") { ?>
-    <meta name="theme-color" content="#367fa9">
-<?php } elseif ($theme == "default-dark") { ?>
-    <meta name="theme-color" content="#272c30">
-<?php } elseif ($theme == "default-darker") { ?>
-    <meta name="theme-color" content="#2e6786">
-<?php } elseif ($theme == "lcars") { ?>
-    <meta name="theme-color" content="#4488FF">
-    <link rel="stylesheet" href="style/vendor/fonts/ubuntu-mono/ubuntu-mono.css?v=<?=$cacheVer?>">
-    <link rel="stylesheet" href="style/vendor/fonts/antonio/antonio.css?v=<?=$cacheVer?>">
-<?php } ?>
-<?php if ($darkmode) { ?>
-    <style>
-        html { background-color: #000; }
-    </style>
-<?php } ?>
-
-    <link rel="stylesheet" href="style/vendor/SourceSansPro/SourceSansPro.css?v=<?=$cacheVer?>">
-    <link rel="stylesheet" href="style/vendor/bootstrap/css/bootstrap.min.css?v=<?=$cacheVer?>">
-    <link rel="stylesheet" href="style/vendor/icheck-bootstrap.min.css?v=<?=$cacheVer?>">
-    <link rel="stylesheet" href="style/vendor/AdminLTE.min.css?v=<?=$cacheVer?>">
-
-    <link rel="stylesheet" href="style/pi-hole.css">
-    <link rel="stylesheet" href="style/themes/<?php echo $theme; ?>.css">
-
-    <script src="scripts/vendor/jquery.min.js?v=<?=$cacheVer?>"></script>
-    <script src="style/vendor/bootstrap/js/bootstrap.min.js?v=<?=$cacheVer?>"></script>
-    <script src="scripts/vendor/adminlte.min.js?v=<?=$cacheVer?>"></script>
-    <script src="scripts/vendor/bootstrap-notify.min.js?v=<?=$cacheVer?>"></script>
-    <script src="style/vendor/font-awesome/js/all.min.js?v=<?=$cacheVer?>"></script>
-    <script src="scripts/pi-hole/js/utils.js?v=<?=$cacheVer?>"></script>
-    <script src="scripts/pi-hole/js/footer.js?v=<?=$cacheVer?>"></script>
-
-    <link rel='shortcut icon' href='/admin/img/favicons/favicon.ico' type='image/x-icon'>
-</head>
 <body class="hold-transition layout-boxed login-page">
 <div class="box login-box">
     <section style="padding: 15px;">
