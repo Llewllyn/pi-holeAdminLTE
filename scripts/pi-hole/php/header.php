@@ -7,11 +7,17 @@
 *  Please see LICENSE file for your rights under this license.
 */
 
-require "scripts/pi-hole/php/auth.php";
 require "scripts/pi-hole/php/password.php";
+if (!$auth) {
+    header("Location: login.php");
+    exit;
+}
+
+require "scripts/pi-hole/php/auth.php";
 require_once "scripts/pi-hole/php/FTL.php";
 require_once "scripts/pi-hole/php/func.php";
 require "scripts/pi-hole/php/theme.php";
+
 $scriptname = basename($_SERVER['SCRIPT_FILENAME']);
 $hostname = gethostname() ? gethostname() : "";
 
@@ -90,16 +96,8 @@ if (empty($_SESSION['token'])) {
 }
 $token = $_SESSION['token'];
 
-if ($auth) {
-    // For session timer
-    $maxlifetime = ini_get("session.gc_maxlifetime");
-
-    // Generate CSRF token
-    if (empty($_SESSION['token'])) {
-        $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
-    }
-    $token = $_SESSION['token'];
-}
+// For session timer
+$maxlifetime = ini_get("session.gc_maxlifetime");
 
 // Get temperature
 list($celsius, $temperaturelimit) = getTemperature();
@@ -311,18 +309,3 @@ require "scripts/pi-hole/php/sidebar.php";
     <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
-<?php
-// If password is not equal to the password set
-// in the setupVars.conf file, then we skip any
-// content and just complete the page. If no
-// password is set at all, we keep the current
-// behavior: everything is always authorized
-// and will be displayed
-//
-// If auth is required and not set, i.e. no successfully logged in,
-// we show the reduced version of the summary (index) page
-if (!$auth && (!isset($indexpage) || isset($_GET['login']))) {
-    require "scripts/pi-hole/php/loginpage.php";
-    exit();
-}
-?>
