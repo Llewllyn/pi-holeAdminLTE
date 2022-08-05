@@ -10,6 +10,7 @@
 
 require "scripts/pi-hole/php/password.php";
 if (!$auth) {
+    $_SESSION['prev_url'] = $_SERVER['REQUEST_URI'];
     header("Location: login.php");
     exit;
 }

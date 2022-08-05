@@ -49,6 +49,12 @@ function verifyPassword($pwhash) {
             $postinput = hash('sha256',hash('sha256',$_POST["pw"]));
 
             if (hash_equals($pwhash, $postinput)) {
+                // Save previously accessed page, before clear the session
+                $redirect_url = "index.php";
+                if (isset($_SESSION['prev_url'])) {
+                    $redirect_url = $_SESSION['prev_url'];
+                }
+
                 // Regenerate session ID to prevent session fixation
                 session_regenerate_id();
 
@@ -64,13 +70,13 @@ function verifyPassword($pwhash) {
                     setcookie('persistentlogin', $pwhash, time()+60*60*24*7, null, null, null, true );
                 }
 
-                // Login successful, redirect the user to the homepage to discard the POST request
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['QUERY_STRING'] === 'login') {
-                    header('Location: index.php');
+                $_SESSION["auth"] = true;
+
+                // Login successful, redirect the user to the original requested page
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['SCRIPT_NAME'] === '/admin/login.php') {
+                    header('Location: '.$redirect_url);
                     exit();
                 }
-
-                $_SESSION["auth"] = true;
             } else {
                 $_SESSION["auth"] = false;
                 $validpassword = false;
@@ -98,5 +104,5 @@ function verifyPassword($pwhash) {
 }
 
 $wrongpassword = !verifyPassword($pwhash);
-$auth = $_SESSION["auth"]
+$auth = $_SESSION["auth"];
 ?>
