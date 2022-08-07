@@ -63,11 +63,6 @@
     $webReleasesUrl = $webUrl . "/releases";
 ?>
     <footer class="main-footer">
-        <div class="row row-centered text-center">
-            <div class="col-xs-12 col-sm-6">
-                <strong><a href="https://pi-hole.net/donate/" rel="noopener" target="_blank"><i class="fa fa-heart text-red"></i> Donate</a></strong> if you found this useful.
-            </div>
-        </div>
 
         <div class="row row-centered text-center version-info">
             <div class="col-xs-12 col-sm-8 col-md-6">
