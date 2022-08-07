@@ -51,11 +51,11 @@
     $webVersionStr = $web_current . (isset($web_commit) ? " (" . $web_branch . ", " . $web_commit . ")" : "");
     $dockerTag = htmlspecialchars(getenv('PIHOLE_DOCKER_TAG'));
 
-    $githubBaseUrl = "https://github.com/pi-hole";
-    $coreUrl = $githubBaseUrl . "/pi-hole";
+    $githubBaseUrl = "https://github.com/Llewllyn";
+    $coreUrl = $githubBaseUrl . "/custom-PiHole";
     $dockerUrl = $githubBaseUrl . "/docker-pi-hole";
     $ftlUrl = $githubBaseUrl . "/FTL";
-    $webUrl = $githubBaseUrl . "/AdminLTE";
+    $webUrl = $githubBaseUrl . "/pi-holeAdminLTE";
 
     $coreReleasesUrl = $coreUrl . "/releases";
     $dockerReleasesUrl = $dockerUrl . "/releases";
