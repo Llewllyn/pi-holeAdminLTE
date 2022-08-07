@@ -307,14 +307,6 @@ if($auth) {
                                 </div>
                             </li>
                             <!-- Menu Footer -->
-                            <li class="user-footer">
-                                <!-- Donate Button -->
-                                <div class="text-center">
-                                    <a class="btn btn-primary btn-lg donate" href="https://pi-hole.net/donate/" rel="noopener" target="_blank">
-                                        <i class="fas fa-fw menu-icon fa-donate"></i> Donate
-                                    </a>
-                                </div>
-                            </li>
                         </ul>
                     </li>
                 </ul>
