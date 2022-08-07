@@ -660,12 +660,6 @@ if($auth) {
                     </a>
                 </li>
                 <?php } ?>
-                <!-- Donate -->
-                <li>
-                    <a href="https://pi-hole.net/donate/" rel="noopener" target="_blank">
-                        <i class="fas fa-fw menu-icon fa-donate"></i> <span>Donate</span>
-                    </a>
-                </li>
                  <!-- Docs -->
                  <li>
                     <a href="https://docs.pi-hole.net/" rel="noopener" target="_blank">
